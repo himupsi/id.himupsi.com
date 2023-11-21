@@ -11,10 +11,13 @@ exports.handler = async function (event, context) {
             body: JSON.stringify({ message: '로그인되지 않았습니다.' }),
         };
     }
-    
+    const { name, avatar } = userInfos.users[userId] || {};
     return {
         statusCode: 200,
-        body: JSON.stringify(JSON.stringify(userInfos.users[userId])),
+        body: JSON.stringify({
+            name,
+            avatar,
+        }),
         headers: {
             'Content-Type': 'application/json',
         }
