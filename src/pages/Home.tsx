@@ -47,6 +47,7 @@ const Home: FC = () => {
   const login = async () => {
     const response = await fetch("https://api.himupsi.com/.netlify/functions/login", {
       method: "POST",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
