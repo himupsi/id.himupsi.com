@@ -28,7 +28,6 @@ exports.handler = async function (event, context) {
         headers: {
             'Set-Cookie': myCookie,
             'Content-Type': 'application/json',
-            ...CORS_HEADERS
         },
     };
 };

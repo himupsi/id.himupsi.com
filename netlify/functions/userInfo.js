@@ -9,7 +9,6 @@ exports.handler = async function (event, context) {
         return {
             statusCode: 401,
             body: JSON.stringify({ message: '로그인되지 않았습니다.' }),
-            headers: CORS_HEADERS,
         };
     }
     
@@ -18,7 +17,6 @@ exports.handler = async function (event, context) {
         body: JSON.stringify(JSON.stringify(userInfos.users[userId])),
         headers: {
             'Content-Type': 'application/json',
-            ...CORS_HEADERS,
         }
     };
 };

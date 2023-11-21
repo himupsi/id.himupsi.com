@@ -1,10 +1,5 @@
 import { FC, useState } from 'react';
 import DefaultLayout from '../components/layout/DefaultLayout';
-import VisibleObserver from "../components/atomic/VisibleObserver";
-import Loading from "../components/atomic/Loading";
-import { DEFAULT_HOME_TEXT, HOME_TEXT_VALUE_KEY } from '../Constants';
-import Memo from '../components/atomic/Memo';
-import { getCieY, getRandomRgb } from '../api/api';
 
 const homeStyle = {
   flex: '1 1',
@@ -33,7 +28,7 @@ const fieldInputStyle = {
 
 
 const Home: FC = () => {
-
+  const urlParams = new URLSearchParams(window.location.search);
   const [ userId, setUserId ] = useState<string>('');
   const [ userPassword, setUserPassword ] = useState<string>('');
 
@@ -45,7 +40,7 @@ const Home: FC = () => {
   };
 
   const login = async () => {
-    const response = await fetch("/.netlify/functions/login", {
+    fetch("/.netlify/functions/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -54,11 +49,19 @@ const Home: FC = () => {
         id: userId,
         password: userPassword,
       })
-    })
+    }).then((res) => {
+      if (res.ok) {
+        const url = urlParams.get('url') || 'https://himupsi.com';
+        window.location.replace(url);
+      } else {
+        res.json().then((data) => {
+          alert(data.message);
+        }).catch((error) => {
+          alert('로그인에 실패했습니다.');
+        });
+      }
+    });
 
-    response.json().then((data) => {
-      console.log(data)
-    })
   };
   
   return (
