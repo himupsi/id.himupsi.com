@@ -25,7 +25,6 @@ const fieldStyle = {
 
 const fieldLabelStyle = {
   flex: '0 0 50px',
-  
 }
 
 const fieldInputStyle = {
@@ -45,8 +44,17 @@ const Home: FC = () => {
     setUserPassword(e.target.value || '');
   };
 
-
-  const login = () => {
+  const login = async () => {
+    const response = await fetch("https://api.himupsi.com/.netlify/functions/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: userId,
+        password: userPassword,
+      })
+    })
   };
   
   return (
@@ -54,11 +62,11 @@ const Home: FC = () => {
       <div style={ homeStyle } className="hus-flex-column">
         <div style={loginFormStyle} className="hus-flex-column">
           <div style={fieldStyle}>
-            <div style={fieldLabelStyle}>ID:</div>
+            <div style={fieldLabelStyle}>ID</div>
             <input style={fieldInputStyle} type="text" onChange={onChangeUserId} value={userId}  />          
           </div>
           <div style={fieldStyle}>
-            <div style={fieldLabelStyle}>PW:</div>
+            <div style={fieldLabelStyle}>PW</div>
             <input style={fieldInputStyle} type="password" onChange={onChangeUserPassword} value={userPassword}  />          
           </div>
           <div>
