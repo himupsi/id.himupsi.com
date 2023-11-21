@@ -6,7 +6,7 @@ exports.handler = async function (event, context) {
     const { id, password } = data;
     const userInfo = userInfos.users[id];
 
-    if (!userInfo || user.password !== password) {
+    if (!userInfo || userInfo.password !== password) {
         return {
             statusCode: 401,
             body: JSON.stringify({ message: '아이디가 존재하지 않습니다.' })

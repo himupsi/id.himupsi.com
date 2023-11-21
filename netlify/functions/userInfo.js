@@ -5,7 +5,7 @@ exports.handler = async function (event, context) {
     const authId = cookies.get('HIM_AUTH');
     const userId = userInfos.authIdUserMap[authId];
 
-    if (uid === null || userId === undefined) {
+    if (authId === null || userId === undefined) {
         return {
             statusCode: 401,
             body: JSON.stringify({ message: '로그인되지 않았습니다.' }),
