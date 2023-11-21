@@ -16,14 +16,24 @@ const loginFormStyle = {
 
 const fieldStyle = {
   display: 'flex',
+  marginBottom: '10px',
 }
 
 const fieldLabelStyle = {
-  flex: '0 0 50px',
+  flex: '0 0 30px',
 }
 
 const fieldInputStyle = {
   flex: '1 1',
+}
+
+const footerStyle = {
+  display: 'flex'
+}
+
+const loginButtonStyle = {
+  flex: '1 1',
+  height: '30px',
 }
 
 
@@ -76,8 +86,9 @@ const Home: FC = () => {
             <div style={fieldLabelStyle}>PW</div>
             <input style={fieldInputStyle} type="password" onChange={onChangeUserPassword} value={userPassword}  />          
           </div>
-          <div>
-            <button onClick={login}>로그인</button>
+          <div style={footerStyle}>
+            <button style={loginButtonStyle}
+              onClick={login}>로그인</button>
           </div>
 
         </div>        

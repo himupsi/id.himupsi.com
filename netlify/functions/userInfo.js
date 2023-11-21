@@ -2,7 +2,7 @@ const userInfos = require("../userInfos");
 
 exports.handler = async function (event, context) {
     const { cookies } = context;
-    const authId = cookies.get(HIMUPSI_AUTH);
+    const authId = cookies.get('HIM_AUTH');
     const userId = userInfos.authIdUserMap[authId];
 
     if (uid === null || userId === undefined) {
