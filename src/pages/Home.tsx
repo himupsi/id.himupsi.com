@@ -55,6 +55,7 @@ const Home: FC = () => {
       headers: {
         "Content-Type": "application/json",
       },
+      credentials: 'include',
       body: JSON.stringify({
         id: userId,
         password: userPassword,
