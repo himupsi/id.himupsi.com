@@ -50,11 +50,12 @@ const Home: FC = () => {
   };
 
   const login = async () => {
-    fetch("/.netlify/functions/login", {
+    fetch("https://api.himupsi.com/.netlify/functions/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
+      credentials: 'include',
       body: JSON.stringify({
         id: userId,
         password: userPassword,
@@ -71,7 +72,6 @@ const Home: FC = () => {
         });
       }
     });
-
   };
   
   return (
